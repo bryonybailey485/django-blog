@@ -1,0 +1,32 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<article class="post">
+    <h1>{{ post.title }}</h1>
+    <p class="post-meta">
+        Published on {{ post.published_at|date:"F j, Y" }} |
+        Last updated: {{ post.updated_at|date:"F j, Y" }}
+    </p>
+    <div>
+        {{ post.body|linebreaks }}
+    </div>
+</article>
+
+<p><a href="{% url 'blog:post_list' %}">Back to all posts</a></p>
+{% endblock %}
+
+
+
+Create a new file: blog/templates/blog/post_not_found.html:
+
+{% extends 'blog/base.html' %}
+
+{% block title %}Post Not Found{% endblock %}
+
+{% block content %}
+    <h1>Post Not Available</h1>
+    <p>The post you're looking for is not available or hasn't been published yet.</p>
+    <p><a href="{% url 'blog:post_list' %}">Return to blog homepage</a></p>
+{% endblock %}
